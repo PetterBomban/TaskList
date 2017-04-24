@@ -7,10 +7,11 @@
     tasks_USERNAME.db
         One database per user. Contains the users' individual
         tasks
+https://gist.github.com/PolBaladas/07bfcdefb5c1c57cdeb5
 '''
 
-import sqlite3 as sql
 from view_index import main
+from view_admin import admin
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template
 
@@ -18,6 +19,7 @@ APP = Flask(__name__)
 
 ## Loading blueprints
 APP.register_blueprint(main)
+APP.register_blueprint(admin, url_prefix='/admin')
 
 if __name__ == '__main__':
     APP.run()

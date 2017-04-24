@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<p>You're logged in.</p>
+{% endif %}
+<p>:)</p>
 
-<head>
-    <title>TaskList</title>
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-    <p>INDEX</p>
-</body>
-
-</html>
+{% endblock %}

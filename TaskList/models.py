@@ -1,60 +1,48 @@
 import sqlite3 as sql
 import bcrypt
 
-def create_user(username, password, email):
-    '''This function checks the input of the user,
-    as well as creating a hashed password'''
+def login_user(username, password):
+    '''Used for logging in the user'''
+    user_details = check_user_details(username, password)
+    return user_details
 
-    ## Hash the password
-    if isinstance(password, str):
-        password = bytes(password, 'utf-8')
-    salt = bcrypt.gensalt()
-    hashed_password = bcrypt.hashpw(password, salt)
-
-    ## Sanitize input
-    ## to do
-    insert_user(username, hashed_password, email)
-
-
-def insert_user(username, password, email):
-    '''Inserts a user into the users.db
-    _note_: Never use this directly. Use create_user()!'''
+def check_user_details(username, password_to_check):
+    '''Used for checking user details before login'''
+    error_message = 'Username or password is incorrect.'
 
     con = sql.connect('users.db')
     cur = con.cursor()
-    cur.execute('INSERT INTO users (username, password, email) VALUES (?,?,?)', \
-        (username, password, email))
+    cur.execute('SELECT username, password FROM users WHERE username = ?', (username,))
+    user = cur.fetchall()
+    con.close()
+
+    ## if user (list) is empty, it means that the username did not match anything in the db
+    password_to_check_enc = bytes(password_to_check, 'utf-8')
+    password_from_db = bytes(user[0][1], 'utf-8')
+    if not user:
+        return error_message
+    elif not bcrypt.checkpw(password_to_check_enc, password_from_db):
+        return error_message
+    else:
+        return "Logged in!" + str(user[0][0])
+
+
+def create_user(username, email, password):
+    '''Used for creating users'''
+    ## Hash the password
+    password = bytes(password, 'utf-8')
+    password_hashed = str(bcrypt.hashpw(password, bcrypt.gensalt()), 'utf8')
+    ## Sanitize input
+    ## to do
+    insert_user(username, email, password_hashed)
+
+
+def insert_user(username, email, password):
+    '''DO NOT USE. Use create_user()'''
+    con = sql.connect('users.db')
+    cur = con.cursor()
+    cur.execute('INSERT INTO users (username, email, password) VALUES (?,?,?)', \
+        (username, email, password))
     con.commit()
     con.close()
     return True
-
-
-def login_user(username, password):
-    if not check_user_password(password):
-        return "Wrong password or username!"
-
-
-
-
-
-
-def check_user_password(self, password_to_check):
-    '''Checks if the input'ed password matches the DB'''
-    if isinstance(password_to_check, str):
-        password_to_check = bytes(password_to_check, 'utf-8')
-    password = bytes(self.password, 'utf-8')
-    return bcrypt.hashpw(password_to_check, password) == password
-
-
-def get_users():
-    '''Gets _ALL_ users'''
-    con = sql.connect('users.db')
-    cur = con.cursor()
-    cur.execute('SELECT username, email FROM users')
-    users = cur.fetchall()
-    con.close()
-
-    return users
-
-
-
