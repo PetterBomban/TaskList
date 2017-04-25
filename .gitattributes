@@ -15,3 +15,6 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+TaskList/static/font-icons/* linguist-vendored
+TaskList/static/fonts/* linguist-vendored
