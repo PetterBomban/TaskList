@@ -6,10 +6,12 @@ admin = Blueprint('admin', __name__)
 @admin.route('/')
 def index():
     '''Main page'''
-    if not session.get('logged_in'):
+    username = session.get('username')
+    if session.get('logged_in') and db_handler.check_user_type(username) == "admin":
+        return render_template('admin.html')
+    else:
         return redirect(url_for('main.login'))
 
-    return render_template('admin.html')
 
 @admin.route('/add_user', methods=['GET', 'POST'])
 def add_user():
