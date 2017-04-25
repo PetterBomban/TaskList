@@ -1,0 +1,10 @@
+/* TEAM */
+Frontend Developer: Rostislav Melkumyan
+Site: https://rosti.no
+
+Backend Developer: Petter Bomban
+Site: https://bomban.no
+
+/* SITE */
+Components: Flask
+Software: SQLite, VSCode, git
