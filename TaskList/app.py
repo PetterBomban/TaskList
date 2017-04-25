@@ -16,6 +16,8 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template
 
 APP = Flask(__name__)
+
+## NOTE: Replace this with something else if used in prod.
 APP.secret_key = 'devKey_:)'
 
 ## Loading blueprints
