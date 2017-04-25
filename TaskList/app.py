@@ -16,6 +16,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template
 
 APP = Flask(__name__)
+APP.secret_key = 'devKey_:)'
 
 ## Loading blueprints
 APP.register_blueprint(main)

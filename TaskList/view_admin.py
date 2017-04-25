@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request
-import models as db_handler
+import db_handler
 
 admin = Blueprint('admin', __name__)
 

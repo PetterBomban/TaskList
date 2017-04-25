@@ -3,13 +3,10 @@ import bcrypt
 
 def login_user(username, password):
     '''Used for logging in the user'''
-    user_details = check_user_details(username, password)
-    return user_details
+    return check_user_details(username, password)
 
 def check_user_details(username, password_to_check):
     '''Used for checking user details before login'''
-    error_message = 'Username or password is incorrect.'
-
     con = sql.connect('users.db')
     cur = con.cursor()
     cur.execute('SELECT username, password FROM users WHERE username = ?', (username,))
@@ -20,11 +17,22 @@ def check_user_details(username, password_to_check):
     password_to_check_enc = bytes(password_to_check, 'utf-8')
     password_from_db = bytes(user[0][1], 'utf-8')
     if not user:
-        return error_message
+        return False
     elif not bcrypt.checkpw(password_to_check_enc, password_from_db):
-        return error_message
+        return False
     else:
-        return "Logged in!" + str(user[0][0])
+        return True
+
+
+def check_user_type(username):
+    '''Checks the user type against the database'''
+    con = sql.connect('users.db')
+    cur = con.cursor()
+    cur.execute('SELECT user_type FROM users WHERE username = ?', (username,))
+    user_type = cur.fetchall()
+    con.close()
+
+    return user_type[0][0]
 
 
 def create_user(username, email, password):

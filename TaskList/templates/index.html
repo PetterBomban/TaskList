@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
-{% if session.logged_in %}
-<p>You're logged in.</p>
+
+{% if username %}
+<p>You're logged in. {{ username }}</p>
 {% endif %}
+
 <p>:)</p>
 
 {% endblock %}
