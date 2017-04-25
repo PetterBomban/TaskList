@@ -1,5 +1,6 @@
 import sqlite3 as sql
 import bcrypt
+from flask import session
 
 def login_user(username, password):
     '''Used for logging in the user'''
@@ -34,22 +35,29 @@ def check_user_type(username):
     return user_type[0][0]
 
 
-def create_user(username, email, password):
+def check_user_logged_in(username, user_type):
+    '''Returns True if user is correct type and logged in. Else, False'''
+    return session.get('logged_in') and check_user_type(username) == user_type
+
+
+def create_user(username, email, password, user_type='member'):
     '''Used for creating users'''
     ## Hash the password
     password = bytes(password, 'utf-8')
     password_hashed = str(bcrypt.hashpw(password, bcrypt.gensalt()), 'utf8')
     ## Sanitize input
     ## to do
-    insert_user(username, email, password_hashed)
+    return insert_user(username, email, password_hashed, user_type)
 
 
-def insert_user(username, email, password):
+def insert_user(username, email, password, user_type):
     '''DO NOT USE. Use create_user()'''
+    task_db = username + "_tasks.db"
     con = sql.connect('users.db')
     cur = con.cursor()
-    cur.execute('INSERT INTO users (username, email, password) VALUES (?,?,?)', \
-        (username, email, password))
+    cur.execute('''\
+                INSERT INTO users (username, email, password, user_type, task_db) 
+                VALUES (?,?,?,?,?)''', (username, email, password, user_type, task_db))
     con.commit()
     con.close()
     return True

@@ -1,11 +1,20 @@
-   <h2>Add user</h2>
+{% if message %}
+<p><b>{{ message }}</b></p>
+{% endif %}
 
-    <form action="{{ url_for('admin.add_user') }}" method="post">
-        <p><b>Username:</b></p>
-        <input type="text" name="username">
-        <p><b>Email:</b></p>
-        <input type="text" name="email">
-        <p><b>Password:</b></p>
-        <input type="password" name="password">
-        <input type="submit" value="Add User">
-    </form>
+<h2>Add user</h2>
+
+<form action="{{ url_for('admin.add_user') }}" method="post">
+    <p><b>Username:</b></p>
+    <input type="text" name="username">
+    <p><b>Email:</b></p>
+    <input type="text" name="email">
+    <p><b>Password:</b></p>
+    <input type="password" name="password">
+    <p><b>User Type:</b></p>
+    <select name="user_type">
+        <option value="member" selected>Member</option>
+        <option value="admin">Admin</option>
+    </select>
+    <input type="submit" value="Add User">
+</form>
