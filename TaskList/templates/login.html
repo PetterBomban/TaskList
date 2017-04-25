@@ -11,10 +11,12 @@
     {% if error %}<p><b>Error:</b> {{ error }}{% endif %}</p>
 
     <form action="{{ url_for('main.login') }}" method="post">
-        <h1><p>TodoList Login</p>
-        <p>Fill in your credentials.</p></h1>
-        <input placeholder="username" type="text" name="username">
-        <input placeholder="password" type="password" name="password">
+        <h1>TodoList Login.<br>
+        Fill in your credentials.</h1>
+        <div id="inputs">
+        <input placeholder="Username" required="" type="text" name="username">
+        <input placeholder="Password" required="" type="password" name="password">
+        </div>
         <input type="submit" name="Login">
     </form>
 <div id="info">
@@ -22,3 +24,4 @@
 </div>
 </body>
 </html>
+

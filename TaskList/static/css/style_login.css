@@ -25,7 +25,7 @@ form h1 {
     box-sizing: border-box;
     padding: 20px;
 }
-input {
+#inputs input {
     margin: 40px 25px;
     width: 360px;
     display: block;
@@ -51,7 +51,7 @@ input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
     transform: translateY(-20px);
     visibility: visible !important;
 }
-button {
+input[type="submit"] {
     border: none;
     background: #3D5AFE;
     cursor: pointer;
@@ -63,7 +63,7 @@ button {
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
     font-size: 16px;
 }
-button:hover {
+input[type="submit"]:hover {
     -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
