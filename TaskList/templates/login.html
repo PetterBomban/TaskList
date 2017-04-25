@@ -9,7 +9,7 @@
 </head>
 <body>
     {% if error %}<p><b>Error:</b> {{ error }}{% endif %}</p>
-
+<!--Login form-->
     <form action="{{ url_for('main.login') }}" method="post">
         <h1>TodoList Login.<br>
         Fill in your credentials.</h1>
@@ -19,6 +19,7 @@
         </div>
         <input type="submit" name="Login">
     </form>
+<!--Info at the bottom-->
 <div id="info">
     <p>To Do made by <a href="https://bomban.no">Petter Bomban</a> and <a href="https://rosti.no">Rostislav Melkumyan</a></p>
 </div>
