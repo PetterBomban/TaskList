@@ -1,5 +1,7 @@
+'''index stuff'''
+
 from flask import Blueprint, render_template, request, session, redirect, url_for
-import db_handler
+import user_handler
 
 main = Blueprint('main', __name__)
 
@@ -21,7 +23,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        login_user = db_handler.login_user(username, password)
+        login_user = user_handler.login_user(username, password)
         if login_user is True:
             session['logged_in'] = True
             session['username'] = username

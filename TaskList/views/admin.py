@@ -1,5 +1,7 @@
+'''admin stuff'''
+
 from flask import Blueprint, render_template, request, session, redirect, url_for
-import db_handler
+import user_handler
 
 admin = Blueprint('admin', __name__)
 
@@ -10,7 +12,7 @@ def check_permissions_return_site(user_type, page, error_page='main.login'):
     username = session.get('username')
     if not username:
         return redirect(url_for(error_page))
-    if not db_handler.check_user_logged_in(username, user_type):
+    if not user_handler.check_user_logged_in(username, user_type):
         return redirect(url_for(error_page))
 
     return render_template(page)
@@ -30,7 +32,7 @@ def add_user():
     if request.method == 'POST':
         ## Checks to see if we're a logged in admin account before adding user
         username = session.get('username')
-        result = db_handler.check_user_logged_in(username, 'admin')
+        result = user_handler.check_user_logged_in(username, 'admin')
         if not result:
             return redirect(url_for('main.login'))
 
@@ -40,7 +42,7 @@ def add_user():
         password = request.form['password']
         user_type = request.form['user_type']
 
-        db_action = db_handler.create_user(username, email, password, user_type)
+        db_action = user_handler.create_user(username, email, password, user_type)
         if db_action is True:
             message = 'Successfully created user ' + username
             return render_template('add_user.html', message=message)
