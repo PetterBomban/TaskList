@@ -1,0 +1,91 @@
+h1, input::-webkit-input-placeholder, button {
+    font-family: roboto;
+}
+h1 {
+    height: 115px;
+    width: 100%;
+    font-size: 26px;
+    background: #3D5AFE;
+    color: white;
+    line-height: 150%;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+}
+form {
+    box-sizing: border-box;
+    max-width: 400px;
+    margin: 100px auto 0;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+    padding-bottom: 40px;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+form h1 {
+    box-sizing: border-box;
+    padding: 20px;
+}
+input {
+    margin: 40px 25px;
+    width: 360px;
+    display: block;
+    border: none;
+    padding: 10px 0;
+    border-bottom: solid 1px #3D5AFE;
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #3D5AFE 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #3D5AFE 4%);
+    background-position: -360px 0;
+    background-size: 360px 100%;
+    background-repeat: no-repeat;
+    color: #2f2f2f;
+}
+input:focus, input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+}
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+    color: #3D5AFE;
+    font-size: 11px;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    visibility: visible !important;
+}
+button {
+    border: none;
+    background: #3D5AFE;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 6px;
+    width: 360px;
+    color: white;
+    margin-left: 25px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+}
+button:hover {
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+body {
+  background-color: #fafafa;
+}
+
+#info {
+  margin-top: 200px;
+  font-family: roboto;
+  color: #757575;
+}
+
+#info a {
+  color: #3D5AFE;
+}
+
+
+
+
+
+
+

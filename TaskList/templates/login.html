@@ -1,12 +1,24 @@
-{% extends "layout.html" %}
-{% block body %}
-    <h2>Login</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To Do Login</title>
+    <link href="{{ url_for('static', filename='css/style_login.css') }}" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+</head>
+<body>
     {% if error %}<p><b>Error:</b> {{ error }}{% endif %}</p>
+
     <form action="{{ url_for('main.login') }}" method="post">
-        <p><b>Username:</b></p>
-        <input type="text" name="username">
-        <p><b>Password</b></p>
-        <input type="password" name="password">
-        <input type="submit" name="login">
+        <h1><p>TodoList Login</p>
+        <p>Fill in your credentials.</p></h1>
+        <input placeholder="username" type="text" name="username">
+        <input placeholder="password" type="password" name="password">
+        <input type="submit" name="Login">
     </form>
-{% endblock %}
+<div id="info">
+    <p>To Do made by <a href="https://bomban.no">Petter Bomban</a> and <a href="https://rosti.no">Rostislav Melkumyan</a></p>
+</div>
+</body>
+</html>

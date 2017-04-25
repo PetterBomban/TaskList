@@ -1,10 +1,95 @@
-{% extends "layout.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-icons/font-awesome.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="icon" href="favicon.png">
+<meta name="theme-color" content="#3D5AFE">
+</head>
 
-{% if username %}
-<p>You're logged in. {{ username }}</p>
+<body>
+    <!--This is the header-->
+    <nav>
+        <div id="logout">
+        {% if session.logged_in %}
+            <a href="{{ url_for('main.logout') }}">
+            <h1><i aria-hidden="true" class="fa fa-sign-out"></i></h1></a>
+        {% else %}
+            <a href="{{ url_for('main.login') }}">
+            <h1><i aria-hidden="true" class="fa fa-sign-in"></i></h1></a>
+        {% endif %}
+        </div>
+
+        <div id="logo">
+            <h1><i aria-hidden="true" class="fa fa-check-square-o"></i> Your To Do list</h1>
+        </div>
+    </nav>
+    <!--Add new card button-->
+    {% if session.logged_in %}
+    <div id="button-container">
+        <a href="#new"><button class="button">+</button></a>
+    </div>
+    {% endif %}
+    <!--New Card popup box-->
+    <div class="overlay" id="new">
+        <div class="popup">
+            <div id="title-new">
+                <p>New note</p>
+            </div>
+                <!--X close icon-->
+            <a class="close" href="#">&times;</a>
+           <!--This is where the form starts-->
+            <form>
+                <!--Card title-->
+                <div id="title-on-card">
+                    <input name="title" placeholder="Title" type="text">
+                </div>
+                <!--Body text in card-->
+                <div id="message-on-card">
+                    <input name="todo" placeholder="What to do?" type="textarea">
+                </div>
+                <!--Note colors-->
+                <div id="colors">
+                    <input id="white" name="color" type="radio" value="white"> <label for="white"><span class="white"></span></label>
+                    <input id="red" name="color" type="radio"> <label for="red"><span class="red"></span></label> 
+                    <input id="orange" name="color" type="radio"> <label for="orange"><span class="orange"></span></label> 
+                    <input id="yellow" name="color" type="radio"> <label for="yellow"><span class="yellow"></span></label> 
+                    <input id="grey" name="color" type="radio"> <label for="grey"><span class="grey"></span></label> 
+                    <input id="blue" name="color" type="radio"> <label for="blue"><span class="blue"></span></label> 
+                    <input id="teal" name="color" type="radio"> <label for="teal"><span class="teal"></span></label> 
+                    <input id="green" name="color" type="radio"> <label for="green"><span class="green"></span></label>
+                </div>
+                <div id="submit">
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+            <!--This is where the form ends-->
+        </div>
+    </div>
+<!--New Card popup box ends here-->
+
+{% if session.logged_in %}
+<!--All the tasks will be in the tasks id-->
+<div id="tasks">
+    <!--All the tasks have a class after their chosen color-->
+    <div class="white" id="task">
+        <!--Delete button-->
+        <span class="delete"><button type="button"><span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
+        </button>
+        <!--Edit button-->
+        </span> <span class="edit"><button type="button"><span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
+        </button>
+        <!--The card title-->
+        </span> <span class="title">Card title</span>
+        <!--Card Body text-->
+        <span class="message">Card Body text</span>
+    </div>
+</div>
 {% endif %}
 
-<p>:)</p>
-
-{% endblock %}
+</body>
+</html>
