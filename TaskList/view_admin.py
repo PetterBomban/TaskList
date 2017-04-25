@@ -3,7 +3,7 @@ import db_handler
 
 admin = Blueprint('admin', __name__)
 
-def check_permissions(user_type, page, error_page='main.login'):
+def check_permissions_return_site(user_type, page, error_page='main.login'):
     '''Check to see if the user has the correct permissions
     to view the page'''
 
@@ -19,7 +19,8 @@ def check_permissions(user_type, page, error_page='main.login'):
 def index():
     '''Main page'''
 
-    return check_permissions('admin', 'admin.html')
+    return check_permissions_return_site('admin', 'admin.html')
+
 
 @admin.route('/add_user', methods=['GET', 'POST'])
 def add_user():
@@ -27,6 +28,12 @@ def add_user():
 
     ## If we get a post request, we start adding users
     if request.method == 'POST':
+        ## Checks to see if we're a logged in admin account before adding user
+        username = session.get('username')
+        result = db_handler.check_user_logged_in(username, 'admin')
+        if not result:
+            return redirect(url_for('main.login'))
+
         message = None
         username = request.form['username']
         email = request.form['email']
@@ -38,4 +45,4 @@ def add_user():
             message = 'Successfully created user ' + username
             return render_template('add_user.html', message=message)
 
-    return check_permissions('admin', 'add_user.html')
+    return check_permissions_return_site('admin', 'add_user.html')
