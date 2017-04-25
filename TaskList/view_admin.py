@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session, redirect, url_for
 import db_handler
 
 admin = Blueprint('admin', __name__)
@@ -6,6 +6,9 @@ admin = Blueprint('admin', __name__)
 @admin.route('/')
 def index():
     '''Main page'''
+    if not session.get('logged_in'):
+        return redirect(url_for('main.login'))
+
     return render_template('admin.html')
 
 @admin.route('/add_user', methods=['GET', 'POST'])

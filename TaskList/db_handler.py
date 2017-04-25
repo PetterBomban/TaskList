@@ -31,7 +31,6 @@ def check_user_type(username):
     cur.execute('SELECT user_type FROM users WHERE username = ?', (username,))
     user_type = cur.fetchall()
     con.close()
-
     return user_type[0][0]
 
 
