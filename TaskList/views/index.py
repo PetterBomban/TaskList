@@ -18,7 +18,7 @@ def index():
 
 @main.route('/newnote', methods=['GET', 'POST'])
 def newnote():
-    if  not session.get('logged_in') or not request.method == "POST":
+    if not session.get('logged_in') or not request.method == 'POST':
         return redirect(url_for('main.index'))
 
     username = session.get('username')
@@ -28,6 +28,18 @@ def newnote():
     if not note_handler.new_note(username, title, content, color):
         return render_template('index.html', message='Failed to create message!')
 
+    return redirect(url_for('main.index'))
+
+
+@main.route('/archivenote', methods=['GET', 'POST'])
+def archivenote():
+    if not session.get('logged_in') or not request.method == 'POST':
+        return redirect(url_for('main.index'))
+
+    # set the status of the passed note to 2, which means that it's archived
+    note_id = request.form['note_id']
+    username = session.get('username')
+    note_handler.edit_note(username, note_id, False, False, False, note_handler.DB_STATUS['archived'])
     return redirect(url_for('main.index'))
 
 

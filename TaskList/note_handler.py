@@ -6,9 +6,18 @@ from flask import session
 DB_STATUS = {'available': 1, 'archived': 2}
 
 
-def get_notes(username):
+def get_notes(username, get_archived=False):
     db = get_note_db(username)
-    sql = 'SELECT title,content,color,note_id FROM notes ORDER BY note_id desc'
+
+    # by default, we do not get archived notes.
+    if get_archived:
+        sql = 'SELECT title,content,color,note_id FROM notes ORDER BY note_id desc'
+    else:
+        sql = '''SELECT title,content,color,note_id
+                FROM notes
+                WHERE status = 1
+                ORDER BY note_id desc'''
+
     db['cur'].execute(sql)
     notes = db['cur'].fetchall()
     db['con'].close()
@@ -37,27 +46,30 @@ def new_note(username, title, content, color, status=DB_STATUS['available']):
 
 
 def edit_note(username, note_id, title=False, content=False, color=False, status=False):
-    sql = 'SELECT title,content,color,status FROM notes WHERE note_id = ?', (note_id,)
-    note = query_db(username, sql)
+    sql = 'SELECT title,content,color,status FROM notes WHERE note_id = ?'
+    note = query_db(username, sql, (note_id,))
 
     # if no values were specified for these parameters, we just set the
     # value to whats already there
-    if not title: title = note[0]
-    if not content: content = note[1]
-    if not color: color = note[2]
-    if not status: status = note[3]
+    if not title: title = note[0][0]
+    if not content: content = note[0][1]
+    if not color: color = note[0][2]
+    if not status: status = note[0][3]
 
     # here we update the database
-    insert_sql = '''\
+    sql = '''\
         UPDATE notes
         SET title=?, content=?, color=?, status=?
-        WHERE note_id=?''', (title, content, color, status, note_id)
-    result = query_db(username, sql)
+        WHERE note_id=?
+        '''
+    values = (title, content, color, status, note_id)
+    result = update_db(username, sql, values)
     return True
 
 
-def archive_note(username, note_id, status='completed'):
-    return True
+def archive_note(username, note_id):
+    sql = 'UPDATE notes SET status=? WHERE note_id=?', (DB_STATUS['archived'], note_id)
+    query_db(username, sql)
 
 
 def permanently_delete_note(username, note_id):
@@ -91,10 +103,16 @@ def get_note_db_name(username):
     return db_path
 
 
-def query_db(username, query):
+def update_db(username, query, args=None):
     db = get_note_db(username)
-    sql = query
-    db['cur'].execute(sql)
+    db['cur'].execute(query, args)
+    db['con'].commit()
+    db['con'].close()
+    return True
+
+def query_db(username, query, args=None):
+    db = get_note_db(username)
+    db['cur'].execute(query, args)
     result = db['cur'].fetchall()
     db['con'].close()
     return result

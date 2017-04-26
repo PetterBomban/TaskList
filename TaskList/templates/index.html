@@ -78,11 +78,19 @@
     {% for note in notes %}
     <!--All the tasks have a class after their chosen color-->
     <div class="{{ note[2] }}" id="task">
-        <input type="hidden" name="note_id" value="{{ note[3] }}">
-        <span class="delete"><button type="button"><span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
-        </button>
-        </span> <span class="edit"><button type="button"><span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
-        </button>
+        <span class="delete">
+            <form action="{{url_for('main.archivenote')}}" method="post">
+            <input type="hidden" name="note_id" value="{{ note[3] }}">
+            <button value="archive">
+                <span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
+            </button>
+            </form>
+        </span>
+        <span class="edit">
+            <input type="hidden" name="note_id" value="{{ note[3] }}">
+            <button type="button" value="edit">
+                <span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
+            </button>
         </span>
         <span class="title">{{ note[0] }}</span>
         <span class="message">{{ note[1] }}</span>
