@@ -394,8 +394,16 @@ textarea {
 }
 textarea:focus {
     outline: 0;
-    }
+}
 	
-	.edit .fa {
-		padding-left: 30px;
-	}
+.edit .fa {
+	padding-left: 30px;
+}
+	
+#colors label span {
+	border-radius: 50px;
+}
+  
+input[type="radio"]:checked+label {
+	border-radius: 50px;
+}
