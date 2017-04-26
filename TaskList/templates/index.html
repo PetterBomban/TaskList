@@ -78,6 +78,7 @@
     {% for note in notes %}
     <!--All the tasks have a class after their chosen color-->
     <div class="{{ note[2] }}" id="task">
+        <input type="hidden" name="note_id" value="{{ note[3] }}">
         <span class="delete"><button type="button"><span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
         </button>
         </span> <span class="edit"><button type="button"><span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
