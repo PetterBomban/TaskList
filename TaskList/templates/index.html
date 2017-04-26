@@ -102,10 +102,17 @@
         <span class="message">{{ note[1] }}</span>
     </div>
     {% else %}
+    {% if archive %}
+    <div class="white" id="task">
+        <span class="title">Archive is empty</span>
+        <span class="message">Archived notes end up here. Don't worry, you can always restore archived notes!</span>
+    </div>
+    {% else %}
     <div class="white" id="task">
         <span class="title">No notes yet!</span>
         <span class="message">Try to add one :)</span>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
 {% endif %}
