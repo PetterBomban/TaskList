@@ -31,6 +31,16 @@ def newnote():
     return redirect(url_for('main.index'))
 
 
+# view archived notes
+@main.route('/archive', methods=['GET'])
+def archive():
+    if not session.get('logged_in'):
+        return redirect(url_for('main.index'))
+    username = session.get('username')
+    archived_notes = note_handler.get_notes(username, False, True)
+    return render_template('index.html', notes=archived_notes, archive=True)
+
+
 @main.route('/archivenote', methods=['GET', 'POST'])
 def archivenote():
     if not session.get('logged_in') or not request.method == 'POST':
@@ -39,8 +49,20 @@ def archivenote():
     # set the status of the passed note to 2, which means that it's archived
     note_id = request.form['note_id']
     username = session.get('username')
-    note_handler.edit_note(username, note_id, False, False, False, note_handler.DB_STATUS['archived'])
+    note_handler.archive_note(username, note_id)
     return redirect(url_for('main.index'))
+
+
+@main.route('/deletenote', methods=['GET', 'POST'])
+def deletenote():
+    if not session.get('logged_in') or not request.method == 'POST':
+        return redirect(url_for('main.index'))
+
+    # permanently delete the passed note
+    note_id = request.form['note_id']
+    username = session.get('username')
+    note_handler.permanently_delete_note(username, note_id)
+    return redirect(url_for('main.archive'))
 
 
 @main.route('/login', methods=['GET', 'POST'])

@@ -6,12 +6,21 @@ from flask import session
 DB_STATUS = {'available': 1, 'archived': 2}
 
 
-def get_notes(username, get_archived=False):
+def get_notes(username, get_archived=False, get_only_archived=False):
     db = get_note_db(username)
+
+    # doesn't make any sense to allow both..
+    if get_archived and get_only_archived:
+        get_only_archived = False
 
     # by default, we do not get archived notes.
     if get_archived:
         sql = 'SELECT title,content,color,note_id FROM notes ORDER BY note_id desc'
+    elif get_only_archived:
+        sql = '''SELECT title,content,color,note_id
+                FROM notes
+                WHERE status = 2
+                ORDER BY note_id desc'''
     else:
         sql = '''SELECT title,content,color,note_id
                 FROM notes
@@ -68,11 +77,14 @@ def edit_note(username, note_id, title=False, content=False, color=False, status
 
 
 def archive_note(username, note_id):
-    sql = 'UPDATE notes SET status=? WHERE note_id=?', (DB_STATUS['archived'], note_id)
-    query_db(username, sql)
+    edit_note(username, note_id, False, False, False, DB_STATUS['archived'])
+    return True
 
 
 def permanently_delete_note(username, note_id):
+    sql = 'DELETE FROM notes WHERE note_id=?'
+    values = (note_id,)
+    result = update_db(username, sql, values)
     return True
 
 

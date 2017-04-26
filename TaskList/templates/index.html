@@ -79,7 +79,13 @@
     <!--All the tasks have a class after their chosen color-->
     <div class="{{ note[2] }}" id="task">
         <span class="delete">
+            {% if archive %}
+            <!-- Permanently delete note -->
+            <form action="{{url_for('main.deletenote')}}" method="post">
+            {% else %}
+            <!-- Archive the note. Can still be restored -->
             <form action="{{url_for('main.archivenote')}}" method="post">
+            {% endif %}
             <input type="hidden" name="note_id" value="{{ note[3] }}">
             <button value="archive">
                 <span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
