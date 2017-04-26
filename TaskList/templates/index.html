@@ -47,7 +47,7 @@
             <form action="{{ url_for('main.newnote') }}" method="post">
                 <!--Card title-->
                 <div id="title-on-card">
-                    <input name="title" placeholder="Title" type="text" required>
+                    <input name="title" placeholder="Title" type="text" maxlength="200" required>
                 </div>
                 <!--Body text in card-->
                 <div id="message-on-card">

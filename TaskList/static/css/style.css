@@ -395,3 +395,7 @@ textarea {
 textarea:focus {
     outline: 0;
     }
+	
+	.edit .fa {
+		padding-left: 30px;
+	}
