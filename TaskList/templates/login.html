@@ -5,7 +5,9 @@
     <title>To Do Login</title>
     <link href="{{ url_for('static', filename='css/style_login.css') }}" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="theme-color" content="#3D5AFE">
+	<link rel="icon" href="favicon.png">
 </head>
 <body>
     {% if error %}<p><b>Error:</b> {{ error }}{% endif %}</p>
