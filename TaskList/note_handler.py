@@ -12,7 +12,6 @@ def get_notes(username):
     db['cur'].execute(sql)
     notes = db['cur'].fetchall()
     db['con'].close()
-    print(notes)
     return notes
 
 
