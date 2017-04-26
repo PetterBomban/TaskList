@@ -330,12 +330,6 @@ textarea {
     border-radius: 3px;
     text-align: right;
 }
-#logout {
-    float: right;
-    margin-right: 40px;
-    color: #efefef;
-    font-size: 18px;
-}
 #button-container {
     margin: 1.3em;
     position: fixed;
@@ -362,7 +356,7 @@ textarea {
         margin-top: 0px;
     }
 }
-#logout .fa:hover {
+.logout .fa:hover {
     color: #ccc !important;
 }
 @media only screen and (max-device-width: 768px) {
@@ -406,4 +400,16 @@ textarea:focus {
   
 input[type="radio"]:checked+label {
 	border-radius: 50px;
+}
+#menu a {
+    color: #efefef;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: roboto;
+    padding-left: 30px;
+}
+
+#menu {
+    float: right;
+    margin-right: 40px;
 }
