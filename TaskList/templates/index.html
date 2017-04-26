@@ -28,12 +28,13 @@
             <h1><i aria-hidden="true" class="fa fa-check-square-o"></i> Your To Do list</h1>
         </div>
     </nav>
-    <!--Add new card button-->
+
     {% if session.logged_in %}
+    <!--Add new card button-->
     <div id="button-container">
         <a href="#new"><button class="button">+</button></a>
     </div>
-    {% endif %}
+    
     <!--New Card popup box-->
     <div class="overlay" id="new">
         <div class="popup">
@@ -43,25 +44,25 @@
                 <!--X close icon-->
             <a class="close" href="#">&times;</a>
            <!--This is where the form starts-->
-            <form>
+            <form action="{{ url_for('main.newnote') }}" method="post">
                 <!--Card title-->
                 <div id="title-on-card">
                     <input name="title" placeholder="Title" type="text">
                 </div>
                 <!--Body text in card-->
                 <div id="message-on-card">
-                    <input name="todo" placeholder="What to do?" type="textarea">
+                    <input name="content" placeholder="What to do?" type="textarea">
                 </div>
                 <!--Note colors-->
                 <div id="colors">
                     <input id="white" name="color" type="radio" value="white"> <label for="white"><span class="white"></span></label>
-                    <input id="red" name="color" type="radio"> <label for="red"><span class="red"></span></label> 
-                    <input id="orange" name="color" type="radio"> <label for="orange"><span class="orange"></span></label> 
-                    <input id="yellow" name="color" type="radio"> <label for="yellow"><span class="yellow"></span></label> 
-                    <input id="grey" name="color" type="radio"> <label for="grey"><span class="grey"></span></label> 
-                    <input id="blue" name="color" type="radio"> <label for="blue"><span class="blue"></span></label> 
-                    <input id="teal" name="color" type="radio"> <label for="teal"><span class="teal"></span></label> 
-                    <input id="green" name="color" type="radio"> <label for="green"><span class="green"></span></label>
+                    <input id="red" name="color" type="radio" value="red"> <label for="red"><span class="red"></span></label> 
+                    <input id="orange" name="color" type="radio" value="orange"> <label for="orange"><span class="orange"></span></label> 
+                    <input id="yellow" name="color" type="radio" value="yellow"> <label for="yellow"><span class="yellow"></span></label> 
+                    <input id="grey" name="color" type="radio" value="grey"> <label for="grey"><span class="grey"></span></label> 
+                    <input id="blue" name="color" type="radio" value="blue"> <label for="blue"><span class="blue"></span></label> 
+                    <input id="teal" name="color" type="radio" value="teal"> <label for="teal"><span class="teal"></span></label> 
+                    <input id="green" name="color" type="radio" value="green"> <label for="green"><span class="green"></span></label>
                 </div>
                 <div id="submit">
                     <input type="submit" value="Save">
@@ -72,22 +73,21 @@
     </div>
 <!--New Card popup box ends here-->
 
-{% if session.logged_in %}
 <!--All the tasks will be in the tasks id-->
 <div id="tasks">
+    {% for note in notes %}
     <!--All the tasks have a class after their chosen color-->
-    <div class="white" id="task">
-        <!--Delete button-->
+    <div class="{{ note[2] }}" id="task">
         <span class="delete"><button type="button"><span class="delete"><i aria-hidden="true" class="fa fa-trash"></i></span>
         </button>
-        <!--Edit button-->
         </span> <span class="edit"><button type="button"><span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
         </button>
-        <!--The card title-->
-        </span> <span class="title">Card title</span>
-        <!--Card Body text-->
-        <span class="message">Card Body text</span>
+        </span> <span class="title">{{ note[0] }}</span>
+        <span class="message">{{ note[1] }}</span>
     </div>
+    {% else %}
+    <p>no notes..</p>
+    {% endfor %}
 </div>
 {% endif %}
 

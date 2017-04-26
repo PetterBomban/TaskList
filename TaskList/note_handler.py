@@ -5,8 +5,19 @@ from flask import session
 
 DB_STATUS = {'available': 1, 'archived': 2}
 
+
+def get_notes(username):
+    db = get_note_db(username)
+    sql = 'SELECT title,content,color FROM notes ORDER BY note_id desc'
+    db['cur'].execute(sql)
+    notes = db['cur'].fetchall()
+    db['con'].close()
+    print(notes)
+    return notes
+
+
 # creates a note database for the current user like so: username_tasks.db
-def new_note(username, title, content, color, status):
+def new_note(username, title, content, color, status=DB_STATUS['available']):
     # check for users' note database
     db = get_note_db(username)
     if not db: return True
@@ -18,9 +29,9 @@ def new_note(username, title, content, color, status):
     # build sql query and commit
     db['cur'].execute('''\
         INSERT INTO notes (username, title, content, color, status)
-        VALUES (?,?,?,?,?)
-        WHERE username = ?
-    ''', (username, title, content, color, status, username))
+        VALUES (?,?,?,?,?)''',
+        (username, title, content, color, status)
+    )
     db['con'].commit()
     db['con'].close()
     return True

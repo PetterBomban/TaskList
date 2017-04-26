@@ -2,6 +2,7 @@
 
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import user_handler
+import note_handler
 
 main = Blueprint('main', __name__)
 
@@ -9,9 +10,24 @@ main = Blueprint('main', __name__)
 def index():
     if session.get('logged_in') is True:
         username = session.get('username')
-        return render_template('index.html', username=username)
+        notes = note_handler.get_notes(username)
+        return render_template('index.html', notes=notes)
     else:
         return render_template('index.html')
+
+
+@main.route('/newnote', methods=['GET', 'POST'])
+def newnote():
+    if  not session.get('logged_in') or not request.method == "POST":
+        return redirect(url_for('main.index'))
+
+    username = session.get('username')
+    title = request.form['title']
+    content = request.form['content']
+    color = request.form['color']
+    if not note_handler.new_note(username, title, content, color):
+        return render_template('index.html', message='Failed to create message!')
+    return render_template('index.html', message='Created new note!')
 
 
 @main.route('/login', methods=['GET', 'POST'])
