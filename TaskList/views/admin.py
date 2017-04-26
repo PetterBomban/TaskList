@@ -2,6 +2,7 @@
 
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import user_handler
+import note_handler
 
 admin = Blueprint('admin', __name__)
 
@@ -28,23 +29,34 @@ def index():
 def add_user():
     '''Takes input from add_user.html and sends to db.'''
 
-    ## If we get a post request, we start adding users
+    # if we get a post request, we start adding users
     if request.method == 'POST':
-        ## Checks to see if we're a logged in admin account before adding user
+        # checks to see if we're a logged in admin account before adding user
         username = session.get('username')
         result = user_handler.check_user_logged_in(username, 'admin')
         if not result:
             return redirect(url_for('main.login'))
 
+        # create the user in the users db
         message = None
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         user_type = request.form['user_type']
-
         db_action = user_handler.create_user(username, email, password, user_type)
-        if db_action is True:
-            message = 'Successfully created user ' + username
-            return render_template('add_user.html', message=message)
+        if not db_action:
+            message = 'Could not create user ' + username + '!'
+            render_template('add_user.html', message=message)
+        
+        # create username_notes.db and table
+        note_db_action = note_handler.create_note_db_table(username)
+        if not note_db_action:
+            message = 'Could not create user note db ' + username + '!'
+            render_template('add_user.html', message=message)
+        
+        # return with success message
+        message = 'Successfully created user ' + username + '.'
+        return render_template('add_user.html', message=message)
 
+    # check for admin rights
     return check_permissions_return_site('admin', 'add_user.html')

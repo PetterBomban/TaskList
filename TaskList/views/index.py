@@ -7,7 +7,6 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    '''Main page'''
     if session.get('logged_in') is True:
         username = session.get('username')
         return render_template('index.html', username=username)
@@ -17,7 +16,6 @@ def index():
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
-    '''Handles logins'''
     error_message = 'Incorrect username or password.'
     if request.method == 'POST':
         username = request.form['username']
@@ -36,7 +34,6 @@ def login():
 
 @main.route('/logout')
 def logout():
-    '''remove username from session'''
     session.pop('logged_in', None)
     session.pop('username', None)
     return redirect(url_for('main.index'))

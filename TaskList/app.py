@@ -1,6 +1,6 @@
 from views import index
 from views import admin
-from flask import Flask, request, session, g, redirect, url_for, abort, \
+from flask import Flask, request, session, redirect, url_for, abort, \
     render_template
 
 APP = Flask(__name__)
