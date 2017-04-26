@@ -12,5 +12,9 @@ APP.secret_key = 'devKey_:)'
 APP.register_blueprint(index.main)
 APP.register_blueprint(admin.admin, url_prefix='/admin')
 
+@APP.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 if __name__ == '__main__':
     APP.run()
