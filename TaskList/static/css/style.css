@@ -302,9 +302,9 @@ h1 {
     margin-bottom: 30px;
     margin-top: 5px;
 }
-#message-on-card input[type="textarea"] {
+textarea {
     width: 100%;
-    height: 100px;
+    height: 150px;
     border-top: 0px;
     border-left: 0px;
     border-right: 0px;
@@ -317,6 +317,7 @@ h1 {
     color: #212121;
     font-family: roboto;
     padding-top: 20px;
+    resize: none;
 }
 #submit input[type="submit"] {
     background-color: #F50057;
@@ -391,3 +392,6 @@ h1 {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+textarea:focus {
+    outline: 0;
+    }
