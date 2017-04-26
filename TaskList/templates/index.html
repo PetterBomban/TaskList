@@ -47,7 +47,7 @@
             <form action="{{ url_for('main.newnote') }}" method="post">
                 <!--Card title-->
                 <div id="title-on-card">
-                    <input name="title" placeholder="Title" type="text">
+                    <input name="title" placeholder="Title" type="text" required>
                 </div>
                 <!--Body text in card-->
                 <div id="message-on-card">
@@ -55,7 +55,7 @@
                 </div>
                 <!--Note colors-->
                 <div id="colors">
-                    <input id="white" name="color" type="radio" value="white"> <label for="white"><span class="white"></span></label>
+                    <input id="white" name="color" type="radio" value="white" checked="checked"> <label for="white"><span class="white"></span></label>
                     <input id="red" name="color" type="radio" value="red"> <label for="red"><span class="red"></span></label> 
                     <input id="orange" name="color" type="radio" value="orange"> <label for="orange"><span class="orange"></span></label> 
                     <input id="yellow" name="color" type="radio" value="yellow"> <label for="yellow"><span class="yellow"></span></label> 

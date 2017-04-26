@@ -1,2 +1,3 @@
 TaskList/__pycache__/*
 TaskList/views/__pycache__/*
+TaskList/user_db/rosti_tasks.db
