@@ -1,10 +1,13 @@
-#TaskList
+# TaskList
 
 A work-in-progress self-hosted note keeping system, kind of like Keep.
 
-##Why
+## Why
 Because I wanted to learn Python and Flask
 
-##Who
+## Who
 Backend - [Petter Bomban](https://Github.com/PetterBomban)
 Frontend - [Rosti Melkumyan](https://Github.com/rostimelk)
+
+## License
+MIT
