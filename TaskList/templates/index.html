@@ -83,11 +83,15 @@
         </button>
         </span> <span class="edit"><button type="button"><span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
         </button>
-        </span> <span class="title">{{ note[0] }}</span>
+        </span>
+        <span class="title">{{ note[0] }}</span>
         <span class="message">{{ note[1] }}</span>
     </div>
     {% else %}
-    <p>no notes..</p>
+    <div class="white" id="task">
+        <span class="title">No notes yet!</span>
+        <span class="message">Try to add one :)</span>
+    </div>
     {% endfor %}
 </div>
 {% endif %}
