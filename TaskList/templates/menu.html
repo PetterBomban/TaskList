@@ -12,11 +12,9 @@
         </span>
                 <span class="logout">
         {% if session.logged_in %}
-            <a href="{{ url_for('main.logout') }}">
-            Logout</a>
+            <a href="{{ url_for('main.logout') }}">Logout</a>
         {% else %}
-            <a href="{{ url_for('main.login') }}">
-            Logout</a>
+            <a href="{{ url_for('main.login') }}">Login</a>
         {% endif %}
         </span>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
