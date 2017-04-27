@@ -11,14 +11,19 @@ def index():
     if session.get('logged_in') is True:
         username = session.get('username')
         notes = note_handler.get_notes(username)
-        return render_template('index.html', notes=notes)
+        return render_template('notes.html', notes=notes)
     else:
-        return render_template('index.html')
+        return render_template('notes.html')
 
 
 @main.route('/error')
 def error():
     return render_template('error.html')
+
+
+@main.route('/settings')
+def settings():
+    return render_template('settings.html')
 
 
 @main.route('/newnote', methods=['GET', 'POST'])
@@ -43,7 +48,7 @@ def archive():
         return redirect(url_for('main.index'))
     username = session.get('username')
     archived_notes = note_handler.get_notes(username, False, True)
-    return render_template('index.html', notes=archived_notes, archive=True)
+    return render_template('notes.html', notes=archived_notes, archive=True)
 
 
 @main.route('/archivenote', methods=['GET', 'POST'])
