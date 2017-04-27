@@ -82,8 +82,8 @@
             <input type="hidden" name="note_id" value="{{ note[3] }}">
             </form>
         </span>
-        <span class="title">{{ note[0] }}</span>
-        <span class="message">{{ note[1] }}</span>
+        <span class="title">{{ note[0]|safe }}</span>
+        <span class="message">{{ note[1]|safe }}</span>
     </div>
     {% else %}
         {% if archive %}
