@@ -12,7 +12,7 @@ def index():
         notes = note_handler.get_notes(username)
         return render_template('notes.html', notes=notes)
     else:
-        return render_template('notes.html')
+        return render_template('notes.html', page='index')
 
 
 # error page
@@ -25,7 +25,7 @@ def error():
 # settings page
 @main.route('/settings')
 def settings():
-    return render_template('settings.html')
+    return render_template('settings.html', page='settings')
 
 
 # add a new note to the users' note db

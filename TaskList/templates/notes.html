@@ -1,10 +1,12 @@
     {% include 'header.html' %}
 
     {% if session.logged_in %}
+    {% if not archive %}
     <!--Add new card button-->
     <div id="button-container">
         <a href="#new"><button class="button">+</button></a>
     </div>
+    {% endif %}
     
     <!--New Card popup box-->
     <div class="overlay" id="new">
