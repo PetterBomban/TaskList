@@ -1,0 +1,30 @@
+    <!--This is the header-->
+    <nav>
+        <div id="menu">
+                    <span class="Home">
+            <a href="{{ url_for('main.index') }}">Home</a>
+        </span>
+        <span class="archive">
+            <a href="{{ url_for('main.archive') }}">Archive</a>
+        </span>
+                <span class="settings">
+            <a href="/settings">Settings</a>
+        </span>
+                <span class="logout">
+        {% if session.logged_in %}
+            <a href="{{ url_for('main.logout') }}">
+            Logout</a>
+        {% else %}
+            <a href="{{ url_for('main.login') }}">
+            Logout</a>
+        {% endif %}
+        </span>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+
+
+        <div id="logo">
+            <h1><i aria-hidden="true" class="fa fa-check-square-o"></i> Your To Do list</h1>
+        </div>
+    </nav>
+    

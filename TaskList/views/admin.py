@@ -1,34 +1,28 @@
-'''admin stuff'''
-
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import user_handler
 import note_handler
 
 admin = Blueprint('admin', __name__)
 
+# check to see if the user has the correct permissions to view the page
 def check_permissions_return_site(user_type, page, error_page='main.login'):
-    '''Check to see if the user has the correct permissions
-    to view the page'''
-
     username = session.get('username')
     if not username:
         return redirect(url_for(error_page))
     if not user_handler.check_user_logged_in(username, user_type):
         return redirect(url_for(error_page))
-
     return render_template(page)
 
+
+# main page
 @admin.route('/')
 def index():
-    '''Main page'''
-
     return check_permissions_return_site('admin', 'admin.html')
 
 
+# add a new user to the users db
 @admin.route('/add_user', methods=['GET', 'POST'])
 def add_user():
-    '''Takes input from add_user.html and sends to db.'''
-
     # if we get a post request, we start adding users
     if request.method == 'POST':
         # checks to see if we're a logged in admin account before adding user

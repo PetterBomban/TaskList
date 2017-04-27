@@ -1,11 +1,10 @@
-'''index stuff'''
-
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import user_handler
 import note_handler
 
 main = Blueprint('main', __name__)
 
+# main page
 @main.route('/')
 def index():
     if session.get('logged_in') is True:
@@ -16,16 +15,20 @@ def index():
         return render_template('notes.html')
 
 
+# error page
 @main.route('/error')
 def error():
-    return render_template('error.html')
+    error = None
+    return render_template('error.html', error=error)
 
 
+# settings page
 @main.route('/settings')
 def settings():
     return render_template('settings.html')
 
 
+# add a new note to the users' note db
 @main.route('/newnote', methods=['GET', 'POST'])
 def newnote():
     if not session.get('logged_in') or not request.method == 'POST':
@@ -51,6 +54,7 @@ def archive():
     return render_template('notes.html', notes=archived_notes, archive=True)
 
 
+# archive a note
 @main.route('/archivenote', methods=['GET', 'POST'])
 def archivenote():
     if not session.get('logged_in') or not request.method == 'POST':
@@ -63,6 +67,7 @@ def archivenote():
     return redirect(url_for('main.index'))
 
 
+# permanently delete a note from the archive
 @main.route('/deletenote', methods=['GET', 'POST'])
 def deletenote():
     if not session.get('logged_in') or not request.method == 'POST':
@@ -75,6 +80,7 @@ def deletenote():
     return redirect(url_for('main.archive'))
 
 
+# login page
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     error_message = 'Incorrect username or password.'
@@ -96,6 +102,7 @@ def login():
     return render_template('login.html')
 
 
+# see ya later aligator 
 @main.route('/logout')
 def logout():
     session.pop('logged_in', None)

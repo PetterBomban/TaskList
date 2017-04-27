@@ -88,11 +88,6 @@ def permanently_delete_note(username, note_id):
     return True
 
 
-# TODO: Categories?
-def insert_note(username, title, text, color):
-    return True
-
-
 # create the 'notes' table if it does not exist
 def create_note_db_table(username):
     db = get_note_db(username)
