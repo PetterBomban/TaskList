@@ -2,10 +2,10 @@ import sqlite3 as sql
 import user_handler
 import os
 from flask import session
-from bleach.sanitizer import Cleaner
+import bleach
 
 # used for escaping bad html
-cleaner = Cleaner()
+cleaner = bleach.Cleaner()
 
 DB_STATUS = {'available': 1, 'archived': 2}
 
@@ -45,9 +45,14 @@ def new_note(username, title, content, color, status=DB_STATUS['available']):
 
     # sanitize html
     for text in content:
-        content = cleaner.clean(content)
+        allowed_tags = bleach.ALLOWED_TAGS
+        custom_allowed_tags = allowed_tags + ['img']
+        allowed_attributes = bleach.ALLOWED_ATTRIBUTES
+        custom_allowed_attributes = allowed_attributes['img'] = 'src'
+        content = bleach.clean(content, custom_allowed_tags)
     for text in title:
-        title = cleaner.clean(title)
+        # sanitize and remove ALL tags from title.
+        title = bleach.clean(title, [], [], [], [], True)
 
     # allow linebreaks
     content = content.replace('\n', '<br/>')
