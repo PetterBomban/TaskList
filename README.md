@@ -26,5 +26,7 @@ Install dependencies and run the app with `python app.py`.
 
 * bcrypt
 
+* bleach
+
 ## License
 MIT
