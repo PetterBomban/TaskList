@@ -81,6 +81,11 @@ def archive_note(username, note_id):
     return True
 
 
+def restore_note(username, note_id):
+    edit_note(username, note_id, False, False, False, DB_STATUS['available'])
+    return True
+
+
 def permanently_delete_note(username, note_id):
     sql = 'DELETE FROM notes WHERE note_id=?'
     values = (note_id,)

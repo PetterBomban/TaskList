@@ -1,12 +1,12 @@
     {% include 'header.html' %}
 
     {% if session.logged_in %}
-    {% if not archive %}
+        {% if not archive %}
     <!--Add new card button-->
     <div id="button-container">
         <a href="#new"><button class="button">+</button></a>
     </div>
-    {% endif %}
+        {% endif %}
     
     <!--New Card popup box-->
     <div class="overlay" id="new">
@@ -66,28 +66,39 @@
             </form>
         </span>
         <span class="edit">
-            <input type="hidden" name="note_id" value="{{ note[3] }}">
-            <button type="button" value="edit">
+            {% if archive %}
+            <!-- restore note -->
+            <form action="{{ url_for('main.restorenote') }}" method="post">
+            <button value="restore">
+                <span class="edit"><i aria-hidden="true" class="fa fa-undo"></i></span>
+            </button>
+            {% else %}
+            <!-- edit note -->
+            <form action="{{ url_for('main.editnote') }}" method="post">
+            <button value="edit">
                 <span class="edit"><i aria-hidden="true" class="fa fa-pencil"></i></span>
             </button>
+            {% endif %}
+            <input type="hidden" name="note_id" value="{{ note[3] }}">
+            </form>
         </span>
         <span class="title">{{ note[0] }}</span>
         <span class="message">{{ note[1] }}</span>
     </div>
     {% else %}
-    {% if archive %}
+        {% if archive %}
     <div class="white" id="task">
         <span class="title">Archive is empty</span>
         <span class="message">Archived notes end up here. Don't worry, you can always restore archived notes!</span>
     </div>
-    {% else %}
+        {% else %}
     <div class="white" id="task">
         <span class="title">No notes yet!</span>
         <span class="message">Try to add one :)</span>
     </div>
-    {% endif %}
+        {% endif %}
     {% endfor %}
 </div>
-{% endif %}
+    {% endif %}
 
 {% include 'footer.html' %}

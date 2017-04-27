@@ -80,6 +80,24 @@ def deletenote():
     return redirect(url_for('main.archive'))
 
 
+# restore note from archive
+@main.route('/restorenote', methods=['GET', 'POST'])
+def restorenote():
+    if not request.method == 'POST':
+        return redirect(url_for('main.index'))
+    
+    note_id = request.form['note_id']
+    username = session.get('username')
+    note_handler.restore_note(username, note_id)
+    return redirect(url_for('main.index'))
+
+
+# edit note
+@main.route('/editnote')
+def editnote():
+    return True
+
+
 # login page
 @main.route('/login', methods=['GET', 'POST'])
 def login():
