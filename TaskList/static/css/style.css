@@ -2,16 +2,6 @@ body {
     margin: 0px !important;
     background-color: #fafafa;
 }
-nav {
-    background-color: #3D5AFE;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    padding-left: 30px;
-    position: fixed;
-    width: 100%;
-    height: 20px;
-}
 #title-on-card input[type="text"] {
     width: 100%;
     border-top: 0px;
@@ -58,19 +48,12 @@ nav {
     /* Internet Explorer 10-11 */
     color: #BDBDBD;
 }
-nav {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-}
 @media only screen and (max-device-width: 768px) {
     input[type="submit"] {
         margin-right: 0px !important;
     }
 }
-nav {
-    margin-bottom: 40px;
-}
 #task {
-    width: 60%;
     margin-bottom: 40px !important;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -80,6 +63,7 @@ nav {
     margin: auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     display: block;
+
 }
 .white {
     background-color: #ffffff;
@@ -88,7 +72,16 @@ nav {
     font-size: 26px;
     font-family: roboto;
     font-weight: 400;
-    color# 212121;
+    color: #212121;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 .title {
     border-bottom: 2px;
@@ -103,11 +96,15 @@ nav {
     padding-top: 20px;
     display: block;
     font-family: roboto;
-}
-@media only screen and (max-device-width: 768px) {
-    #task {
-        width: 70%;
-    }
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 div#colors {
     margin-top: 20px !important;
@@ -214,7 +211,7 @@ label span.green {
     background-color: #CCFF90;
 }
 #tasks {
-    padding-top: 90px;
+    padding-top: 40px;
 }
 .white .title {
     border-color: #efefef;
@@ -369,7 +366,7 @@ textarea {
 }
 @media only screen and (max-device-width: 768px) {
     #tasks {
-        padding-top: 85px;
+        padding-top: 35px;
     }
 }
 @media only screen and (max-device-width: 768px) {
@@ -378,46 +375,126 @@ textarea {
     }
 }
 #logo {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 textarea:focus {
     outline: 0;
 }
-	
 .edit .fa {
-	padding-left: 30px;
-}
-	
-#colors label span {
-	border-radius: 50px;
-}
-  
-input[type="radio"]:checked+label {
-	border-radius: 50px;
-}
-#menu a {
-    color: #efefef;
-    font-size: 18px;
-    text-decoration: none;
-    font-family: roboto;
     padding-left: 30px;
 }
-
-#menu {
-    float: right;
-    margin-right: 60px;
+#colors label span {
+    border-radius: 50px;
 }
-
-
-
+input[type="radio"]:checked+label {
+    border-radius: 50px;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #3D5AFE;
+}
 @media screen and (min-width: 600px) {
-#menu .icon {
+    .menu-items {
+        float: right;
+        padding: 20px 30px;
+    }
+}
+@media screen and (min-width: 600px) {
+    .topnav a {
+        padding-left: 30px;
+    }
+}
+.topnav a {
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: roboto;
+}
+@media screen and (max-width: 600px) {
+    .topnav a {
+        padding: 20px 30px;
+    }
+}
+.topnav .icon {
     display: none;
 }
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+.topnav {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+@media screen and (max-width: 600px) {
+    .topnav a {
+        display: none;
+    }
+}
+.topnav #logo {
+    padding: 20px 30px 0px;
+}
+.topnav.responsive #logo {
+    display: none;
+}
+#delete-all {
+    text-align: right;
+}
+
+#delete-all button {
+    padding: 12px;
+    background-color: #F50057;
+    color: #ffffff;
+    font-family: roboto;
+    border: none;
+    font-size: 16px;
+    border-radius: 3px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.20);
+}
+
+#delete-all button:hover {
+    background-color: #C51162;
+}
+#tasks {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+@media screen and (max-width: 600px) {
+#tasks {
+    margin-left: 5%;
+    margin-right: 5%;
+    }
 }
