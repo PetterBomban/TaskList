@@ -16,6 +16,11 @@ def index():
         return render_template('index.html')
 
 
+@main.route('/error')
+def error():
+    return render_template('error.html')
+
+
 @main.route('/newnote', methods=['GET', 'POST'])
 def newnote():
     if not session.get('logged_in') or not request.method == 'POST':

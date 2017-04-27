@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>Your To Do list</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="font-icons/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-icons/font-awesome.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 <link rel="icon" href="favicon.png">
@@ -69,6 +69,5 @@
 <p><a href="login">Login to continue</a></p>
 </div>
 
-  </body>
+</body>
 </html>
-
