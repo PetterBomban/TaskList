@@ -285,7 +285,7 @@ label span.green {
         width: 80%;
     }
 }
-h1 {
+#logo h1 {
     font-size: 18px;
     color: #ffffff;
     font-family: roboto;
@@ -406,7 +406,7 @@ input[type="radio"]:checked+label {
     background-color: #3D5AFE;
 }
 @media screen and (min-width: 600px) {
-    .menu-items {
+    #menuitems {
         float: right;
         padding: 20px 30px;
     }
@@ -469,11 +469,11 @@ input[type="radio"]:checked+label {
 .topnav.responsive #logo {
     display: none;
 }
-#delete-all {
+#deleteall {
     text-align: right;
 }
 
-#delete-all button {
+#deleteall button {
     padding: 12px;
     background-color: #F50057;
     color: #ffffff;
@@ -485,7 +485,7 @@ input[type="radio"]:checked+label {
     box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.20);
 }
 
-#delete-all button:hover {
+#deleteall button:hover {
     background-color: #C51162;
 }
 #tasks {

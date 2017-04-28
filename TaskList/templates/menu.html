@@ -1,18 +1,19 @@
-    <!--This is the header-->
-	
-	<div class="topnav">
-	<div class="menu-items>
-  <a class="active" href="{{ url_for('main.index') }}">Home</a>
+
+        <div class="topnav" id="myTopnav">
+<div id="menuitems">
+  <a href="{{ url_for('main.index') }}">Home</a>
   <a href="{{ url_for('main.archive') }}">Archive</a>
   <a href="#settings">Settings</a>
-{% if session.logged_in %}
+  {% if session.logged_in %}
             <a href="{{ url_for('main.logout') }}">
             Logout</a>
         {% else %}
             <a href="{{ url_for('main.login') }}">
             login</a>
         {% endif %}
-		</div>
-
-
         </div>
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+          <div id="logo">
+            <h1><i aria-hidden="true" class="fa fa-check-square-o"></i> Your To Do list</h1>
+        </div>
+</div>
