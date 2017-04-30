@@ -1,11 +1,68 @@
-#404 {
-    font-size: 200px;
-    font-family: roboto;
-    text-align: center;
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-#not-found {
-    font-size: 50px;
-    font-family: roboto;
-    text-align: center;
+p {
+  color: #3D5AFE;
+  font: 400 27px "Roboto";
+  text-align: center;
+  width: 100%;
+  margin-bottom: 40px;
 }
+
+.eyes {
+  height: 240px;
+  width: 375px;
+  position: relative;
+  margin-bottom: 100px;
+  margin-top: 10%;
+}
+
+.eye {
+  position: absolute;
+  left: 75px;
+  top: 0;
+  height: 15px;
+  width: 15px;
+  animation: blink 4s infinite;
+}
+.eye:nth-child(2) {
+  left: 270px;
+  animation: blink 4s infinite, right-eye 4s infinite;
+}
+
+@keyframes right-eye {
+  0%, 14%, 21%, 100% {
+    transform: rotateY(0deg);
+  }
+  14.001%, 20.999% {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes blink {
+  0%, 14%, 21%, 100% {
+    box-shadow: 0 15px #3D5AFE inset, -15px 0 #3D5AFE, 15px 0 #3D5AFE, 30px 0 #3D5AFE, -30px 15px #3D5AFE, 45px 15px #3D5AFE, -45px 30px #3D5AFE, 60px 30px #3D5AFE, -45px 45px #3D5AFE, 60px 45px #3D5AFE, -60px 60px #3D5AFE, 75px 60px #3D5AFE, -60px 75px #3D5AFE, -30px 75px #3D5AFE, -15px 75px #3D5AFE, 75px 75px #3D5AFE, -75px 90px #3D5AFE, -45px 90px #3D5AFE, 0 90px #3D5AFE, 90px 90px #3D5AFE, -60px 120px 0 15px #3D5AFE, 7.5px 112.5px 0 7.5px #3D5AFE, 90px 90px #3D5AFE, 90px 105px #3D5AFE, 90px 120px #3D5AFE, -52.5px 142.5px 0 7.5px #3D5AFE, -22.5px 127.5px 0 7.5px #3D5AFE, 7.5px 127.5px 0 7.5px #3D5AFE, 90px 135px #3D5AFE, 0 150px #3D5AFE, 75px 150px #3D5AFE, -60px 165px #3D5AFE, -30px 165px #3D5AFE, -15px 165px #3D5AFE, 75px 165px #3D5AFE, -45px 180px #3D5AFE, 60px 180px #3D5AFE, -45px 195px #3D5AFE, 60px 195px #3D5AFE, -30px 210px #3D5AFE, 45px 210px #3D5AFE, -15px 225px #3D5AFE, 0 225px #3D5AFE, 15px 225px #3D5AFE, 30px 225px #3D5AFE;
+  }
+  14.001%, 20.999% {
+    box-shadow: -75px 120px #3D5AFE, -60px 135px #3D5AFE, -67.5px 157.5px 0 7.5px #3D5AFE, -52.5px 157.5px 0 7.5px #3D5AFE, 90px 150px #3D5AFE, 75px 165px #3D5AFE, 90px 165px #3D5AFE, 75px 180px #3D5AFE, -75px 180px #3D5AFE, -37.5px 172.5px 0 7.5px #3D5AFE, -22.5px 172.5px 0 7.5px #3D5AFE, -37.5px 187.5px 0 7.5px #3D5AFE, 15px 195px 0 15px #3D5AFE, 52.5px 187.5px 0 7.5px #3D5AFE, -45px 210px #3D5AFE, 15px 225px #3D5AFE;
+  }
+}
+#back button {
+    background-color: #3D5AFE;
+    padding: 12px;
+    font-size: 16px;
+    font-family: roboto;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#back button a {
+    text-decoration: none;
+    color: #ffffff;
+}
+

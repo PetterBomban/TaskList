@@ -211,7 +211,7 @@ label span.green {
     background-color: #CCFF90;
 }
 #tasks {
-    padding-top: 25px;
+    padding-top: 35px;
 }
 .white .title {
     border-color: #efefef;
@@ -473,6 +473,7 @@ input[type="radio"]:checked+label {
 }
 .deleteall {
     text-align: right;
+    margin-top: -10px;
 }
 .deleteall button {
     padding: 12px;
