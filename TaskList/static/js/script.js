@@ -11,3 +11,4 @@ function menu() {
 function hamburger(x) {
     x.classList.toggle("change");
 }
+
