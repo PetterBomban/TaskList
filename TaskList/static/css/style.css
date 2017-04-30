@@ -481,7 +481,7 @@ input[type="radio"]:checked+label {
     font-family: roboto;
     border: none;
     font-size: 16px;
-    border-radius: 3px;
+    border-radius: 50px;
     margin-bottom: 25px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.20);
 }
