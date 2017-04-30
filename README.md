@@ -12,7 +12,7 @@ Because I wanted to learn Python and Flask, as well as try out developing someth
 ## Who
 Backend - [Petter Bomban](https://Github.com/PetterBomban)
 
-Frontend - [Rosti Melkumyan](https://Github.com/rostimelk)
+Frontend - [Rostislav Melkumyan](https://Github.com/rostimelk)
 
 ## Usage
 For now, we've only tested it on Flasks local development server. In addition, we just use an SQLite database for storing users at the moment. This will be changed to a proper database later on.
