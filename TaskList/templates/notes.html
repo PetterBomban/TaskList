@@ -48,6 +48,9 @@
 
 <!--All the tasks will be in the tasks id-->
 <div id="tasks">
+    <div class="deleteall">
+        <button>Delete all notes in archive</button>
+        </div>
     {% for note in notes %}
     <!--All the tasks have a class after their chosen color-->
     <div class="{{ note[2] }}" id="task">
