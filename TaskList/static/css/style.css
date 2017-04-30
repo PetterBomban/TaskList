@@ -469,11 +469,11 @@ input[type="radio"]:checked+label {
 .topnav.responsive #logo {
     display: none;
 }
-#deleteall {
+.deleteall {
     text-align: right;
 }
 
-#deleteall button {
+.deleteall button {
     padding: 12px;
     background-color: #F50057;
     color: #ffffff;
@@ -485,16 +485,21 @@ input[type="radio"]:checked+label {
     box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.20);
 }
 
-#deleteall button:hover {
+.deleteall button:hover {
     background-color: #C51162;
 }
 #tasks {
     margin-left: 20%;
     margin-right: 20%;
 }
-@media screen and (max-width: 600px) {
+
+
+@media screen and (max-width: 800px) {
 #tasks {
     margin-left: 5%;
     margin-right: 5%;
     }
 }
+
+  .message img {
+  max-width: 100%;
